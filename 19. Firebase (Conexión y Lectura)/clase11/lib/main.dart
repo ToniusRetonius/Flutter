@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 /* 
 
 En esta clase, sumamente vital para el desarrollo de una app vamos a ver FIREBASE. 
@@ -49,14 +51,15 @@ el tema es que firebase no es una base de datos, ofrece el servicio y ese es FIR
 
 */
 /// import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:clase11/p%C3%A1ginas/home.dart';
 import 'package:flutter/material.dart';
 
 /// importaciones firebase
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-
+/// importaciones de rutas
+import 'package:clase11/p%C3%A1ginas/add_names.dart';
+import 'package:clase11/p%C3%A1ginas/home.dart';
 
 void main() async {
   /// esto del main me asegura estar usando el paquete e inicializado el servidor a Firebase
@@ -73,10 +76,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Material App',
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      /* Creamos el sistema de rutas (ver clase 18) */
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+        '/add': (context) => const AddName(),
+        
+      }
     );
   }
 }

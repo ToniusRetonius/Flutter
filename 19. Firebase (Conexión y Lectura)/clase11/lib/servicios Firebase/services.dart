@@ -31,3 +31,25 @@ Future<List> getPeople() async {
 
   return people;
 }
+
+/// vamos a querer mandarle info capturada en la app y guardarla en la base de datos
+/// vamos a devolver void porque por el momento nos interesa subir la info y nada más, podríamos también querer capturar un booleano si se cargó en la db ...  etc
+/// en async porque necesitamos esperar a que se guarde el proceso, que la base de datos guarde
+
+Future<void> addPeople(String name) async {
+  /*  es importante notar la estructura de dato de nuestra collección 
+  {
+    "people": [
+      {
+        "name": Toto
+      },
+      {
+        "name": Ari
+      }, 
+      {...}, 
+    ]
+  } 
+  para poder entender qué le estamos pasando al .add()
+  */
+  await db.collection("people").add({"name": name});
+}

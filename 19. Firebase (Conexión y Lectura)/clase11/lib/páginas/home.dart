@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 43, 0, 43),
+          backgroundColor: const Color.fromARGB(255, 43, 0, 43),
           title: const Text('Lectura de Firebase', textAlign: TextAlign.center, style: TextStyle(color: Colors.white),),
         ),
 
@@ -46,7 +46,22 @@ class _HomePageState extends State<HomePage> {
               return const Center(child: CircularProgressIndicator());
             }
           },
-        ));
+        ),
+
+        /// acá ponemos el floationg button que me abre el textfield para ingresar la data que vamos a querer guardad
+        /// luego de la captura de la info necesitamos que espere la guarda en la db y que vuelva esa info nueva, por ello, este proceso se vuelve ASYNC
+        /// en otras palabras, espera a que nosotros GUARDEMOS lo que pusimos en el textfield, si es que no pusimos nada, no importa 
+        /// tenemos que ACTUALIZAR el estado con SetState 
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            await Navigator.pushNamed(context, '/add');
+
+            setState(() {});
+          },
+
+          child:const Icon(Icons.add),
+          )
+      );
   }
 }
 
